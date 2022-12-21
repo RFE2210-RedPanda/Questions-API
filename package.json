@@ -1,0 +1,33 @@
+{
+  "name": "questions-api",
+  "version": "1.0.0",
+  "description": "questions API for PandaWare",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "etl-tables": "node --max-old-space-size=4096 ./db/etl/migrate.js",
+    "etl-questions": "node --max-old-space-size=4096 ./db/etl/importQuestions.js",
+    "etl-answers": "node --max-old-space-size=12000 ./db/etl/importAnswers.js",
+    "etl-photos": "node --max-old-space-size=4096 ./db/etl/importPhotos.js",
+    "etl-ids": "node --max-old-space-size=4096 ./db/etl/fixIdCount.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RFE2210-RedPanda/Questions-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RFE2210-RedPanda/Questions-API/issues"
+  },
+  "homepage": "https://github.com/RFE2210-RedPanda/Questions-API#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "csv-parse": "^5.3.3",
+    "express": "^4.18.2",
+    "postgres": "^3.3.2"
+  }
+}
