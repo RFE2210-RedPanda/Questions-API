@@ -1,0 +1,17 @@
+This is not the smoothest ETL process in the world, but it does work.
+
+You will simply run five commands in order. The only hiccup is that you either leave each command 5 minutes to run, or you can check on the progress of the command through the Postgres CLI.
+
+If you plan to check on the progress through the CLI, simply run postgres and be working within the database you plan to use. As you run the import commands simply keep an eye on the number of records which have been entered into the table through the use of this command:
+
+SELECT count(*) AS exact_count FROM [table-name]
+
+If you use this frequently as the records are being imported, you can see how many records are in the table. Once this number stops going up, you can know that the process is done running and you can close it.
+
+Run these commands in order, but make sure the middle 3 processes (starred) are done before moving on to the next, the other two are short operations which you will not need to check on.
+
+npm run etl-tables
+*npm run etl-questions*
+*npm run etl-photos*
+*npm run etl-answers*
+npm run etl-ids
