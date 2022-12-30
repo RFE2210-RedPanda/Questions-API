@@ -12,9 +12,10 @@ const importAnswers = async () => {
     })
   )
   .on('data', async (row) => {
+    let timestamp = new Date(Number(row.date_written)).toISOString();
     await sql`
-    INSERT INTO answers (id, question_id, answer_body, answer_date, answerer_name, email, answer_helpfulness, reported)
-    VALUES (${row.id}, ${row.question_id}, ${row.body}, ${row.date_written}, ${row.answerer_name}, ${row.answerer_email}, ${row.helpful}, ${row.reported});
+    INSERT INTO temp_answers (id, question_id, body, date, answerer_name, email, helpfulness, reported)
+    VALUES (${row.id}, ${row.question_id}, ${row.body}, ${timestamp}, ${row.answerer_name}, ${row.answerer_email}, ${row.helpful}, ${row.reported === '1' ? true : false});
     `;
   })
   .on('end', async () => {

@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node ./server/index.js",
     "etl-tables": "node --max-old-space-size=4096 ./db/etl/migrate.js",
     "etl-questions": "node --max-old-space-size=4096 ./db/etl/importQuestions.js",
     "etl-answers": "node --max-old-space-size=12000 ./db/etl/importAnswers.js",

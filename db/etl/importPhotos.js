@@ -13,7 +13,7 @@ const importPhotos = async () => {
   )
   .on('data', async (row) => {
     await sql`
-    INSERT INTO photos (id, answer_id, url)
+    INSERT INTO temp_photos (id, answer_id, url)
     VALUES (${row.id}, ${row.answer_id}, ${row.url});
     `;
   })
