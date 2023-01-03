@@ -1,0 +1,16 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 10
+      arrivalRate: 5
+      rampTo: 1000
+      name: Ramp up load
+    - duration: 10
+      arrivalRate: 1000
+      name: Sustained load
+
+scenarios:
+  - name: "Get answers for random question"
+    flow:
+      - get:
+          url: "/qa/questions/{{ $randomNumber(1,100000) }}/answers"

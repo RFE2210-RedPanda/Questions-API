@@ -22,9 +22,9 @@ let questionsMax = await sql`SELECT MAX(question_id) from questions;`;
 questionsMax = questionsMax[0].max;
 await sql`SELECT setval(${questionsSeq}, ${questionsMax})`;
 
-let photosSeq = 'photos_id_seq';
+let photosSeq = 'temp_photos_id_seq';
 let photosMax = await sql`SELECT MAX(id) from temp_photos;`;
-photosMax = questionsMax[0].max;
+photosMax = photosMax[0].max;
 await sql`SELECT setval(${photosSeq}, ${photosMax})`;
 
 await sql`CREATE INDEX product_id_index ON questions (product_id);`;

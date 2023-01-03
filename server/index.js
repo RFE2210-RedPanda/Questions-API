@@ -112,6 +112,46 @@ app.post('/qa/questions/:question_id/answers', async (req, res) => {
   }
 });
 
+app.put('/qa/questions/:question_id/helpful', async (req, res) => {
+  let question_id = Number(req.params.question_id);
+  await sql`
+    UPDATE questions
+    SET question_helpfulness = question_helpfulness + 1
+    WHERE question_id = ${question_id};
+  `
+  res.status(204).send();
+});
+
+app.put('/qa/questions/:question_id/report', async (req, res) => {
+  let question_id = Number(req.params.question_id);
+  await sql`
+    UPDATE questions
+    SET reported = true
+    WHERE question_id = ${question_id};
+  `
+  res.status(204).send();
+});
+
+app.put('/qa/answers/:answer_id/helpful', async (req, res) => {
+  let answer_id = Number(req.params.answer_id);
+  await sql`
+    UPDATE anwers
+    SET helpfulness = helpfulness + 1
+    WHERE id = ${answer_id};
+  `
+  res.status(204).send();
+});
+
+app.put('/qa/answers/:answer_id/report', async (req, res) => {
+  let answer_id = Number(req.params.answer_id);
+  await sql`
+    UPDATE anwers
+    SET reported = true
+    WHERE id = ${answer_id};
+  `
+  res.status(204).send();
+});
+
 app.listen(port, () => {
   console.log(`API is listening on port ${port}`);
-})
+});
