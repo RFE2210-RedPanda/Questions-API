@@ -5,6 +5,8 @@ const port = 3000;
 
 app.use(express.json());
 
+app.use(express.static('public'));
+
 app.get('/qa/questions', async (req, res) => {
   let product_id = Number(req.query.product_id);
   let page = req.query.page ? Number(req.query.page) : 1;
